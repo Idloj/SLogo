@@ -1,4 +1,4 @@
-package slogo
+package slogo.gui
 
 import java.awt._
 import javax.swing._
