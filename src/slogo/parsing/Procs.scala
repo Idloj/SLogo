@@ -10,8 +10,16 @@ class Procs(turtle: Turtle) {
     "left"    -> (1, left),
     "max"     -> (2, max),
     "min"     -> (2, min))
-  def syntax(proc: String): Option[Int] = (procs get proc) map (p => p._1)
-  def proc(proc: String): Proc = procs(proc)._2
+  def syntax(proc: String): Option[Int] = (procs get key(proc)) map (p => p._1)
+  def proc(proc: String): Proc = procs(key(proc))._2
+
+  private def key(proc: String) = proc.toLowerCase match {
+    case "fd" => "forward"
+    case "bk" => "back"
+    case "rt" => "right"
+    case "lt" => "left"
+    case key  => key
+  }
 
   protected def forward(args: Array[Any]) = args(0) match {
     case arg: Double => turtle.move(arg*sin(toRadians(turtle.heading)), arg*cos(toRadians(turtle.heading)))
