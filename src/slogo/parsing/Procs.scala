@@ -10,7 +10,7 @@ class Procs(turtle: Turtle) {
     "left"    -> (1, left),
     "max"     -> (2, max),
     "min"     -> (2, min))
-  def syntax(proc: String): Option[Int] = (procs get key(proc)) map (p => p._1)
+  def args(proc: String): Option[Int] = (procs get key(proc)) map (p => p._1)
   def proc(proc: String): Proc = procs(key(proc))._2
 
   private def key(proc: String) = proc.toLowerCase match {
