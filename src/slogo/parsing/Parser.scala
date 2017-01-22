@@ -6,12 +6,12 @@ case class Word(str: String)   extends Token
 case class Procedure(proc: String)  extends Token
 
 object Parser {
-  def tokenize(code: String) = code.split(" ").toVector map {
+  def tokenize(code: String) = code.split(" ").filter(_.length!=0).toVector map {
     case num if toDouble(num) != None => Number(num.toDouble)
     case str if str.startsWith("\"")  => Word(str drop 1)
     case proc                         => Procedure(proc)
   }
-  def run(code: String, turtle: Turtle) = eval(tokenize(code), new Procs(turtle))
+  def run(code: String, turtle: Turtle) = eval(tokenize(code), new Procs(turtle, TurtleProcs.procsMap))
   def eval(tokens: Vector[Token], procs: Procs): (Any, Vector[Token]) = tokens(0) match {
     case Number(num)       => (num, tokens drop 1)
     case Word(str)         => (str, tokens drop 1)

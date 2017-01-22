@@ -2,14 +2,7 @@ package slogo.parsing
 
 import scala.math._
 
-class Procs(turtle: Turtle) {
-  val procs = Map[String, (Int, Proc)](
-    "forward" -> (1, forward),
-    "back"    -> (1, back),
-    "right"   -> (1, right),
-    "left"    -> (1, left),
-    "max"     -> (2, max),
-    "min"     -> (2, min))
+class Procs(turtle: Turtle, procs: ProcsMap) {
   def args(proc: String): Option[Int] = (procs get key(proc)) map (p => p._1)
   def proc(proc: String): Proc = procs(key(proc))._2
 

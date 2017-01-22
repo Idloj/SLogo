@@ -5,5 +5,9 @@ import java.awt._
 import gui.MainWindow
 
 object SLogo extends App {
-  EventQueue.invokeLater(new MainWindow().setVisible(true))
+  EventQueue.invokeLater {
+    val window = new MainWindow
+    window.setVisible(true)
+    window.setup()
+  }
 }
